@@ -48,3 +48,4 @@ class AcmeEntity {
  * Személyazonosító igazolvány (kártya) szám (IdCardNumber)
  * Teljes név (FullName)
  * Cégjegyzékszám (BusinessRegistrationNumber)
+ * Bankszámlaszám (HuBankAccount)

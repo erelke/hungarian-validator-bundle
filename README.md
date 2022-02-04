@@ -1,24 +1,11 @@
 # Hungarian Validator Bundle
 
+Symfony bundle a Magyarországon használt hivatalos adatok (úgy mint: személyi szám, adóazonosító jel, stb) validálására.
+
 ## Installálás
 
-composer.json fájlba:
-```json
-{
-  "repositories": [
-      {
-          "type": "vcs",
-          "url": "https://github.com/erelke/hungarian-validator-bundle.git"
-      },
-  ],
-  "require": {
-      "erelke/hungarian-validator-bundle": "^1.0.0",
-  }
-}
-```
-
 ```bash
-php composer.phar update spe/hungarian-validator-bundle
+composer require erelke/hungarian-validator-bundle
 ```
 
 ## Használata

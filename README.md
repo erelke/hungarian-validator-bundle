@@ -49,3 +49,4 @@ class AcmeEntity {
  * Teljes név (FullName)
  * Cégjegyzékszám (BusinessRegistrationNumber)
  * Bankszámlaszám (HuBankAccount)
+ * Taj szám (SocialSecurityNumber)

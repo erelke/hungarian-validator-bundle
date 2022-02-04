@@ -1,6 +1,6 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Validator;
+namespace Erelke\HungarianValidatorBundle\Validator;
 
 use Symfony\Component\Validator\ConstraintValidator;
 use Symfony\Component\Validator\Constraint;

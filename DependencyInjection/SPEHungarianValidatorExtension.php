@@ -1,6 +1,6 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\DependencyInjection;
+namespace Erelke\HungarianValidatorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

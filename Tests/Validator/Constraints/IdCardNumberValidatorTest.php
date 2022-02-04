@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\IdCardNumber;
-use SPE\HungarianValidatorBundle\Validator\IdCardNumberValidator;
+use Erelke\HungarianValidatorBundle\Validator\IdCardNumber;
+use Erelke\HungarianValidatorBundle\Validator\IdCardNumberValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

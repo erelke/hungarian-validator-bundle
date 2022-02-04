@@ -1,6 +1,6 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\DependencyInjection;
+namespace Erelke\HungarianValidatorBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

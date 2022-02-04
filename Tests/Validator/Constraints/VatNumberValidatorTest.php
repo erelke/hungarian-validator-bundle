@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\VatNumber;
-use SPE\HungarianValidatorBundle\Validator\VatNumberValidator;
+use Erelke\HungarianValidatorBundle\Validator\VatNumber;
+use Erelke\HungarianValidatorBundle\Validator\VatNumberValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

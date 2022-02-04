@@ -1,26 +1,33 @@
 {
-    "name": "spe/hungarian-validator-bundle",
-    "description": "Symfony2 bundle a Magyarorszagon hasznalt hivatalos adatok (ugy mint: szemelyi szam, adoazonosito jel...) validalasara",
-    "homepage": "https://github.com/loonkwil/hungarian-validator-bundle",
+    "name": "erelke/hungarian-validator-bundle",
+    "description": "Symfony bundle a Magyarorszagon hasznalt hivatalos adatok (ugy mint: szemelyi szam, adoazonosito jel...) validalasara",
+    "homepage": "https://github.com/erelke/hungarian-validator-bundle",
     "type": "symfony-bundle",
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/loonkwil/hungarian-validator-bundle"
+            "url": "https://github.com/erelke/hungarian-validator-bundle"
         }
     ],
     "authors": [
         {
+            "name": "Elemer Eross",
+            "email": "eross@korona.info.hu"
+        },
+        {
             "name": "Peter Simon",
-            "email": "simonpepe@gmail.com"
+            "email": "simonpepe@gmail.com",
         }
     ],
     "require":      {
         "php": ">=5.5.9",
-        "symfony/validator": "^3.2"
+        "symfony/validator": "^5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.*"
     },
     "autoload": {
-        "psr-0": { "SPE\\HungarianValidatorBundle": "" }
+        "psr-0": { "Erelke\\HungarianValidatorBundle": "" }
     },
-    "target-dir": "SPE/HungarianValidatorBundle"
+    "target-dir": "Erelke/HungarianValidatorBundle"
 }

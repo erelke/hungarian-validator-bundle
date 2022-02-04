@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\BusinessRegistrationNumber;
-use SPE\HungarianValidatorBundle\Validator\BusinessRegistrationNumberValidator;
+use Erelke\HungarianValidatorBundle\Validator\BusinessRegistrationNumber;
+use Erelke\HungarianValidatorBundle\Validator\BusinessRegistrationNumberValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

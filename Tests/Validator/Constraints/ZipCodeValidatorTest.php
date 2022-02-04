@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\ZipCode;
-use SPE\HungarianValidatorBundle\Validator\ZipCodeValidator;
+use Erelke\HungarianValidatorBundle\Validator\ZipCode;
+use Erelke\HungarianValidatorBundle\Validator\ZipCodeValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

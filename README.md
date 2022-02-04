@@ -1,7 +1,5 @@
 # Hungarian Validator Bundle
 
-[![Build Status](https://travis-ci.org/loonkwil/hungarian-validator-bundle.png)](https://travis-ci.org/loonkwil/hungarian-validator-bundle)
-
 ## Installálás
 
 composer.json fájlba:
@@ -10,11 +8,11 @@ composer.json fájlba:
   "repositories": [
       {
           "type": "vcs",
-          "url": "https://github.com/loonkwil/hungarian-validator-bundle.git"
+          "url": "https://github.com/erelke/hungarian-validator-bundle.git"
       },
   ],
   "require": {
-      "spe/hungarian-validator-bundle": "^1.0.0",
+      "erelke/hungarian-validator-bundle": "^1.0.0",
   }
 }
 ```
@@ -29,7 +27,7 @@ php composer.phar update spe/hungarian-validator-bundle
 <?php
 namespace Acme\AcmeDemoBundle\Entity;
 
-use SPE\HungarianValidatorBundle\Validator as HungarianAssert;
+use Erelke\HungarianValidatorBundle\Validator as HungarianAssert;
 
 class AcmeEntity {
   /**

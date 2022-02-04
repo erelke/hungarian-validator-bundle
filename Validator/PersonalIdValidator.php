@@ -1,6 +1,6 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Validator;
+namespace Erelke\HungarianValidatorBundle\Validator;
 
 /**
  * szemelyi szam ellenorzese

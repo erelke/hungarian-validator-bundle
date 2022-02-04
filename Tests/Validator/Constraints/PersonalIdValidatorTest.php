@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\PersonalId;
-use SPE\HungarianValidatorBundle\Validator\PersonalIdValidator;
+use Erelke\HungarianValidatorBundle\Validator\PersonalId;
+use Erelke\HungarianValidatorBundle\Validator\PersonalIdValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

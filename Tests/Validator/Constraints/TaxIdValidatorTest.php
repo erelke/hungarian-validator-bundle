@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\TaxId;
-use SPE\HungarianValidatorBundle\Validator\TaxIdValidator;
+use Erelke\HungarianValidatorBundle\Validator\TaxId;
+use Erelke\HungarianValidatorBundle\Validator\TaxIdValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

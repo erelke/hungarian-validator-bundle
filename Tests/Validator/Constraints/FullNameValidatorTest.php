@@ -1,9 +1,9 @@
 <?php
 
-namespace SPE\HungarianValidatorBundle\Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
-use SPE\HungarianValidatorBundle\Validator\FullName;
-use SPE\HungarianValidatorBundle\Validator\FullNameValidator;
+use Erelke\HungarianValidatorBundle\Validator\FullName;
+use Erelke\HungarianValidatorBundle\Validator\FullNameValidator;
 
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 

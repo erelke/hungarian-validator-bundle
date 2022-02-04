@@ -3,6 +3,7 @@
     "description": "Symfony bundle a Magyarorszagon hasznalt hivatalos adatok (ugy mint: szemelyi szam, adoazonosito jel...) validalasara",
     "homepage": "https://github.com/erelke/hungarian-validator-bundle",
     "type": "symfony-bundle",
+    "license": "MIT",
     "repositories": [
         {
             "type": "vcs",
@@ -20,7 +21,7 @@
         }
     ],
     "require":      {
-        "php": ">=5.5.9",
+        "php": ">=7.4",
         "symfony/validator": "^5.4"
     },
     "require-dev": {

@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class PersonalId extends Constraint
 {
-    public $message = "It is not a valid personal ID";
+	const Message = "It is not a valid personal ID";
+	public $message = self::Message;
 
     public function validatedBy()
     {

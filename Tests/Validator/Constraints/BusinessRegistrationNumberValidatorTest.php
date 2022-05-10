@@ -20,7 +20,7 @@ class BusinessRegistrationNumberValidatorTest extends ConstraintValidatorTestCas
     public function testInvalidBusinessRegistrationNumbers($value)
     {
         $this->validator->validate($value, new BusinessRegistrationNumber());
-        $this->buildViolation("It is not a valid business registration number")
+        $this->buildViolation(BusinessRegistrationNumber::Message)
             ->assertRaised();
     }
 

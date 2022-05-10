@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class FullName extends Constraint
 {
-    public $message = "Please enter your full name";
+	const Message = "Please enter your full name";
+	public $message = self::Message;
 
     public function validatedBy()
     {

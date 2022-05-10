@@ -37,3 +37,5 @@ class AcmeEntity {
  * Cégjegyzékszám (BusinessRegistrationNumber)
  * Bankszámlaszám (HuBankAccount)
  * Taj szám (SocialSecurityNumber)
+ * Vezetői engedély szám (DriverLicenceNumber)
+ * Védettségi igazolvány szám (VaccinationCardNumber)

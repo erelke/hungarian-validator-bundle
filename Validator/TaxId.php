@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class TaxId extends Constraint
 {
-    public $message = "It is not a valid tax ID";
+	const Message = "It is not a valid tax ID";
+	public $message = self::Message;
 
     public function validatedBy()
     {

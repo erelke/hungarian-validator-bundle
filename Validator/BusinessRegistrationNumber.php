@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class BusinessRegistrationNumber extends Constraint
 {
-    public $message = "It is not a valid business registration number";
+	const Message = "It is not a valid business registration number";
+    public $message = self::Message;
 
     public function validatedBy()
     {

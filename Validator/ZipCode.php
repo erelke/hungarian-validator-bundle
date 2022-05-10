@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class ZipCode extends Constraint
 {
-    public $message = "It is not a valid ZIP code";
+	const Message = "It is not a valid ZIP code";
+	public string $message = self::Message;
 
     public function validatedBy()
     {

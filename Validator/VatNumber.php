@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class VatNumber extends Constraint
 {
-    public $message = "It is not a valid VAT number";
+	const Message = "It is not a valid VAT number";
+	public $message = self::Message;
 
     public function validatedBy()
     {

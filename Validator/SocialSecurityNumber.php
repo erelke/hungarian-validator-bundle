@@ -9,7 +9,8 @@ use Symfony\Component\Validator\Constraint;
  */
 class SocialSecurityNumber extends Constraint
 {
-	public $message = "It is not a valid Social Security Number";
+	const Message = "It is not a valid Social Security Number";
+	public $message = self::Message;
 
 	public function validatedBy()
 	{

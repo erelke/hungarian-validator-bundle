@@ -24,11 +24,11 @@ class Valid extends Constraint
 	public ?int $type = null;
 	public ?string $propertyPath = null;
 
-	public $message_format = 'Invalid HuBankAccount Format';
-	public $message_check  = 'Invalid HuBankAccount Check';
-	public $check_format = true;
-	public $check_parts = true;
-	public $single_part = false;
+	public string $message_format = 'Invalid HuBankAccount Format';
+	public string $message_check  = 'Invalid HuBankAccount Check';
+	public bool $check_format = true;
+	public bool $check_parts = true;
+	public bool $single_part = false;
 
 	const IdCardNumber = 1;
 	const AddressCardNumber = 2;
@@ -54,7 +54,7 @@ class Valid extends Constraint
 		$this->propertyPath = $propertyPath ?? $this->propertyPath;
 
 		if (null === $this->type && null === $this->propertyPath) {
-			throw new ConstraintDefinitionException(sprintf('The "%s" constraint requires either the "type" or "propertyPath" option to be set.', static::class));
+			$this->type = self::Other;
 		}
 
 		if (null !== $this->type && null !== $this->propertyPath) {

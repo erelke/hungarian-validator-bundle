@@ -54,7 +54,8 @@ class Valid extends Constraint
 		$this->propertyPath = $propertyPath ?? $this->propertyPath;
 
 		if (null === $this->type && null === $this->propertyPath) {
-			$this->type = self::Other;
+			//$this->type = self::Other;
+			throw new ConstraintDefinitionException(sprintf('The "%s" constraint requires either the "type" or "propertyPath" option to be set.', static::class));
 		}
 
 		if (null !== $this->type && null !== $this->propertyPath) {

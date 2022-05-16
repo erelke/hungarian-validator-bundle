@@ -19,14 +19,24 @@ use Symfony\Component\Validator\Constraint;
  */
 class HuBankAccount extends Constraint
 {
-    public $message_format = 'Invalid HuBankAccount Format';
-    public $message_check  = 'Invalid HuBankAccount Check';
-    public $check_format = true;
-    public $check_parts = true;
-    public $single_part = false;
+    public string $message_format = 'Invalid HuBankAccount Format';
+    public string $message_check  = 'Invalid HuBankAccount Check';
+    public bool $check_format = true;
+    public bool $check_parts = true;
+    public bool $single_part = false;
 
     public function getTargets()
     {
         return self::PROPERTY_CONSTRAINT;
     }
+
+	public function __construct($options = NULL, ?bool $check_format = null,?bool $check_parts = null,?bool $single_part = null, $groups = NULL, $payload = NULL)
+	{
+
+		parent::__construct($options, $groups, $payload);
+
+		$this->check_format = $check_format ?? $this->check_format;
+		$this->check_parts = $check_parts ?? $this->check_parts;
+		$this->single_part = $single_part ?? $this->single_part;
+	}
 }

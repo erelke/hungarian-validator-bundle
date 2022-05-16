@@ -10,12 +10,23 @@
  */
 
 namespace Erelke\HungarianValidatorBundle\Validator;
+use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 class ValidValidator extends ConstraintValidator
 {
+	private PropertyAccessorInterface $propertyAccessor;
+
+	public function __construct(PropertyAccessorInterface $propertyAccessor = null)
+	{
+		$this->propertyAccessor = $propertyAccessor;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
@@ -24,6 +35,11 @@ class ValidValidator extends ConstraintValidator
 		if (!$constraint instanceof Valid) {
 			throw new UnexpectedTypeException($constraint, Valid::class);
 		}
+
+		if (null === $value) {
+			return;
+		}
+
 		$validator = $this->getValidator($constraint);
 
 		if ($validator instanceof ConstraintValidator) {
@@ -34,7 +50,21 @@ class ValidValidator extends ConstraintValidator
 
 	private function getValidator(Valid &$constraint): ?ConstraintValidator
 	{
-		switch ($constraint->type) {
+		if ($path = $constraint->propertyPath) {
+			if (null === $object = $this->context->getObject()) {
+				return null;
+			}
+
+			try {
+				$type = $this->getPropertyAccessor()->getValue($object, $path);
+			} catch (NoSuchPropertyException $e) {
+				throw new ConstraintDefinitionException(sprintf('Invalid property path "%s" provided to "%s" constraint: ', $path, get_debug_type($constraint)).$e->getMessage(), 0, $e);
+			}
+		} else {
+			$type = $constraint->type;
+		}
+
+		switch ($type) {
 			case Valid::IdCardNumber:
 				$constraint->setMessage(IdCardNumber::Message);
 				return new IdCardNumberValidator();
@@ -71,5 +101,14 @@ class ValidValidator extends ConstraintValidator
 				return null;
 		}
 
+	}
+
+	private function getPropertyAccessor(): PropertyAccessorInterface
+	{
+		if (null === $this->propertyAccessor) {
+			$this->propertyAccessor = PropertyAccess::createPropertyAccessor();
+		}
+
+		return $this->propertyAccessor;
 	}
 }

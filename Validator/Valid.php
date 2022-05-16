@@ -10,12 +10,19 @@
  */
 
 namespace Erelke\HungarianValidatorBundle\Validator;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
+use Symfony\Component\Validator\Exception\LogicException;
 
+/**
+ * @Annotation
+ */
 class Valid extends Constraint
 {
 	public string $message = "It is a not valid number!";
-	public ?int $type = self::Other;
+	public ?int $type = null;
+	public ?string $propertyPath = null;
 
 	public $message_format = 'Invalid HuBankAccount Format';
 	public $message_check  = 'Invalid HuBankAccount Check';
@@ -39,11 +46,24 @@ class Valid extends Constraint
 	const FullName = 32;
 	const Other = 99;
 
-	public function __construct($options = NULL, ?int $type = self::Other, $groups = NULL, $payload = NULL) {
+	public function __construct($options = NULL, ?int $type = null, ?string $propertyPath = null, $groups = NULL, $payload = NULL) {
 
 		parent::__construct($options, $groups, $payload);
 
 		$this->type = $type ?? $this->type;
+		$this->propertyPath = $propertyPath ?? $this->propertyPath;
+
+		if (null === $this->type && null === $this->propertyPath) {
+			throw new ConstraintDefinitionException(sprintf('The "%s" constraint requires either the "type" or "propertyPath" option to be set.', static::class));
+		}
+
+		if (null !== $this->type && null !== $this->propertyPath) {
+			throw new ConstraintDefinitionException(sprintf('The "%s" constraint requires only one of the "type" or "propertyPath" options to be set, not both.', static::class));
+		}
+
+		if (null !== $this->propertyPath && !class_exists(PropertyAccess::class)) {
+			throw new LogicException(sprintf('The "%s" constraint requires the Symfony PropertyAccess component to use the "propertyPath" option.', static::class));
+		}
 	}
 
 	/**
@@ -60,5 +80,13 @@ class Valid extends Constraint
 	public function setMessage(string $message): void
 	{
 		$this->message = $message;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getDefaultOption()
+	{
+		return 'type';
 	}
 }

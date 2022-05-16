@@ -12,6 +12,9 @@
 namespace Erelke\HungarianValidatorBundle\Validator;
 use Symfony\Component\Validator\Constraint;
 
+/**
+ * @Annotation
+ */
 class DriverLicenceNumber extends Constraint
 {
 	const Message = "It is not a valid driver licence number";

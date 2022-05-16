@@ -12,6 +12,9 @@
 namespace Erelke\HungarianValidatorBundle\Validator;
 use Symfony\Component\Validator\Constraint;
 
+/**
+ * @Annotation
+ */
 class VaccinationCardNumber extends Constraint
 {
 	const Message = "It is not a valid vaccination card number";

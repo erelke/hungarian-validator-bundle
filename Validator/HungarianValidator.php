@@ -75,7 +75,8 @@ class HungarianValidator extends ConstraintValidator
         for( $i = 0; $i < $l - 1; ++$i ) {
             $sum += (int)$value[$i] * ($i + 1);
         }
-
-        return (($sum % 11) === (int)$value[$l - 1]);
+	    $rest = $sum % 11;
+	    if ($rest == 10) $rest = 0;
+        return ($rest === (int)$value[$l - 1]);
     }
 }

@@ -41,7 +41,7 @@ class AcmeUser {
   /**
    * @HungarianAssert\TaxId(
    *    message="Hibás adózanosító!",
-   *    birthDayMessage="Adóazonosító nem a megadott születési dátumhoz ({{ birthDate }}) tartozik!",     
+   *    birthdayMessage="Adóazonosító nem a megadott születési dátumhoz ({{ birthDate }}) tartozik!",     
    *    birthdayProperty="birthDate" 
    * )
    */

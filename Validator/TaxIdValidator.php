@@ -2,6 +2,15 @@
 
 namespace Erelke\HungarianValidatorBundle\Validator;
 
+use DateTime;
+use DateTimeInterface;
+use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
+use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
+use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
+
 /**
  * adoazonosito jel ellenorzese
  *
@@ -27,7 +36,15 @@ namespace Erelke\HungarianValidatorBundle\Validator;
  */
 class TaxIdValidator extends HungarianValidator
 {
-    // Csak a 1921-10-05 es 2031-04-10 kozotti datumokat fogadja el!
+
+    private ?PropertyAccessorInterface $propertyAccessor;
+
+    public function __construct(PropertyAccessorInterface $propertyAccessor = null)
+    {
+        $this->propertyAccessor = $propertyAccessor;
+    }
+
+    // Csak a 1921-10-05 es 2031-04-10 kozotti datumokat fogadja el! (6-os már 2058-08-26 lenne)
     protected $pattern = '/
         ^
         8
@@ -41,12 +58,68 @@ class TaxIdValidator extends HungarianValidator
         $
         /x';
 
-    protected function check($value)
+
+    /**
+     * @param string $value
+     * @param Constraint|TaxId $constraint
+     */
+    public function validate($value, Constraint $constraint)
+    {
+        if( !$this->haveToValidate($value) ) {
+            return;
+        }
+
+        if( !$this->isValidType($value) ) {
+            throw new UnexpectedTypeException($value, 'string');
+        }
+
+        $birthday = null;
+        if ($path = $constraint->birthdayProperty) {
+            if (null !== $object = $this->context->getObject()) {
+                try {
+                    $birthday = $this->getPropertyAccessor()->getValue($object, $path);
+                } catch (NoSuchPropertyException $e) {
+                    throw new ConstraintDefinitionException(sprintf('Invalid property path "%s" provided to "%s" constraint: ', $path, get_debug_type($constraint)).$e->getMessage(), 0, $e);
+                }
+            }
+        }
+
+        if ($birthday && !$birthday instanceof DateTimeInterface) {
+            throw new ConstraintDefinitionException(sprintf('Value for property path "%s" provided to "%s" constraint is not instance of DateTimeInterface!', $path, get_debug_type($constraint)));
+        }
+
+        $isValid = $this->check($value, $birthday);
+
+        if( !$isValid ) {
+            $this->context->buildViolation($constraint->message)
+                ->addViolation();
+        }
+    }
+
+    protected function check($value, ?DateTimeInterface $birthday = null)
     {
         if( preg_match($this->pattern, $value) === 0 ) {
             return false;
         }
 
+        if ($birthday) {
+            $ref = new DateTime("1867-01-01");
+            $days = $birthday->diff($ref)->days + 1;
+            var_dump($days);
+            $cleanedValue = str_replace([' ', '-'], '', $value);
+            $part = substr($cleanedValue, 1, 5);
+            if ((int)$part !== $days ) return false;
+        }
+
         return $this->checkSum($value);
+    }
+
+    private function getPropertyAccessor(): PropertyAccessorInterface
+    {
+        if (null === $this->propertyAccessor) {
+            $this->propertyAccessor = PropertyAccess::createPropertyAccessor();
+        }
+
+        return $this->propertyAccessor;
     }
 }

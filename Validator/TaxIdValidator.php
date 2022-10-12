@@ -73,7 +73,6 @@ class TaxIdValidator extends HungarianValidator
             throw new UnexpectedTypeException($value, 'string');
         }
 
-        $birthday = null;
         if ($path = $constraint->birthdayProperty) {
             if (null !== $object = $this->context->getObject()) {
                 try {
@@ -81,14 +80,21 @@ class TaxIdValidator extends HungarianValidator
                 } catch (NoSuchPropertyException $e) {
                     throw new ConstraintDefinitionException(sprintf('Invalid property path "%s" provided to "%s" constraint: ', $path, get_debug_type($constraint)).$e->getMessage(), 0, $e);
                 }
+                if (!$birthday instanceof DateTimeInterface) {
+                    throw new ConstraintDefinitionException(sprintf('Value for property path "%s" provided to "%s" constraint is not instance of DateTimeInterface!', $path, get_debug_type($constraint)));
+                }
+
+                $isValid = $this->checkDate($value, $birthday);
+                if (!$isValid) {
+                    $this->context->buildViolation($constraint->birthdayMessage)
+                        ->setParameter('{{ birthDate }}', $birthday->format('Y. m. d.'))
+                        ->setInvalidValue($value)
+                        ->addViolation();
+                }
             }
         }
 
-        if ($birthday && !$birthday instanceof DateTimeInterface) {
-            throw new ConstraintDefinitionException(sprintf('Value for property path "%s" provided to "%s" constraint is not instance of DateTimeInterface!', $path, get_debug_type($constraint)));
-        }
-
-        $isValid = $this->check($value, $birthday);
+        $isValid = $this->check($value);
 
         if( !$isValid ) {
             $this->context->buildViolation($constraint->message)
@@ -96,19 +102,22 @@ class TaxIdValidator extends HungarianValidator
         }
     }
 
-    protected function check($value, ?DateTimeInterface $birthday = null)
+    protected function checkDate($value, ?DateTimeInterface $birthday = null): bool
     {
-        if( preg_match($this->pattern, $value) === 0 ) {
-            return false;
-        }
-
         if ($birthday) {
             $ref = new DateTime("1867-01-01");
             $days = $birthday->diff($ref)->days + 1;
-            var_dump($days);
             $cleanedValue = str_replace([' ', '-'], '', $value);
             $part = substr($cleanedValue, 1, 5);
             if ((int)$part !== $days ) return false;
+        }
+        return  true;
+    }
+
+    protected function check($value): bool
+    {
+        if( preg_match($this->pattern, $value) === 0 ) {
+            return false;
         }
 
         return $this->checkSum($value);

@@ -30,7 +30,10 @@ class Valid extends Constraint
 	public bool $check_parts = true;
 	public bool $single_part = false;
 
-	const IdCardNumber = 1;
+    public string $birthDayMessage = "This tax ID is not related to given date ({{ birthDate }}).";
+    public ?string $birthdayProperty;
+
+    const IdCardNumber = 1;
 	const AddressCardNumber = 2;
 	const DriverLicenceNumber = 3;
 	const PassportNumber = 4;
@@ -46,12 +49,13 @@ class Valid extends Constraint
 	const FullName = 32;
 	const Other = 99;
 
-	public function __construct($options = NULL, ?int $type = null, ?string $propertyPath = null, $groups = NULL, $payload = NULL) {
+	public function __construct($options = NULL, ?int $type = null, ?string $propertyPath = null, $groups = NULL, $payload = NULL, ?string $birthdayProperty = null) {
 
 		parent::__construct($options, $groups, $payload);
 
 		$this->type = $type ?? $this->type;
 		$this->propertyPath = $propertyPath ?? $this->propertyPath;
+        $this->birthdayProperty = $birthdayProperty;
 
 		if (null === $this->type && null === $this->propertyPath) {
 			//$this->type = self::Other;
@@ -86,7 +90,7 @@ class Valid extends Constraint
 	/**
 	 * {@inheritdoc}
 	 */
-	public function getDefaultOption()
+	public function getDefaultOption(): string
 	{
 		return 'type';
 	}

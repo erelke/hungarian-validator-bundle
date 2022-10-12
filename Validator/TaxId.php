@@ -10,10 +10,11 @@ use Symfony\Component\Validator\Constraint;
 class TaxId extends Constraint
 {
 	const Message = "It is not a valid tax ID";
-	public $message = self::Message;
+	public string $message = self::Message;
+    public string $birthdayMessage = "This tax ID is not related to given date ({{ birthDate }}).";
     public ?string $birthdayProperty;
 
-    public function validatedBy()
+    public function validatedBy(): string
     {
         return __CLASS__ . 'Validator';
     }

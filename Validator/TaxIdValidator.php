@@ -80,17 +80,15 @@ class TaxIdValidator extends HungarianValidator
                 } catch (NoSuchPropertyException $e) {
                     throw new ConstraintDefinitionException(sprintf('Invalid property path "%s" provided to "%s" constraint: ', $path, get_debug_type($constraint)).$e->getMessage(), 0, $e);
                 }
-                if (!$birthday instanceof DateTimeInterface) {
-                    throw new ConstraintDefinitionException(sprintf('Value for property path "%s" provided to "%s" constraint is not instance of DateTimeInterface!', $path, get_debug_type($constraint)));
-                }
-
-                $isValid = $this->checkDate($value, $birthday);
-                if (!$isValid) {
-                    $this->context->buildViolation($constraint->birthdayMessage)
-                        ->setParameter('{{ birthDate }}', $birthday->format('Y. m. d.'))
-                        ->setInvalidValue($value)
-                        ->addViolation();
-                }
+				if ($birthday !== null) {
+					if (!$birthday instanceof DateTimeInterface) {
+						throw new ConstraintDefinitionException(sprintf('Value for property path "%s" provided to "%s" constraint is not instance of DateTimeInterface!', $path, get_debug_type($constraint)));
+					}
+					$isValid = $this->checkDate($value, $birthday);
+					if (!$isValid) {
+						$this->context->buildViolation($constraint->birthdayMessage)->setParameter('{{ birthDate }}', $birthday->format('Y. m. d.'))->setInvalidValue($value)->addViolation();
+					}
+				}
             }
         }
 

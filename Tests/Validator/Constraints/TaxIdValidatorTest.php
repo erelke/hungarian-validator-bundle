@@ -116,6 +116,8 @@ class TaxIdValidatorTest extends ConstraintValidatorTestCase
             ['8328258706', new DateTime('1956-11-15')],
             ['8328258706', new DateTime('1956-11-15')],
             ['8599998706', new DateTime('2031-04-10')],
+	        ['8460820084', new DateTime('1993-03-03')],
+
         ];
     }
 }

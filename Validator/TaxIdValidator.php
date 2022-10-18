@@ -100,16 +100,13 @@ class TaxIdValidator extends HungarianValidator
         }
     }
 
-    protected function checkDate($value, ?DateTimeInterface $birthday = null): bool
+    protected function checkDate($value, DateTimeInterface $birthday): bool
     {
-        if ($birthday) {
-            $ref = new DateTime("1867-01-01");
-            $days = $birthday->diff($ref)->days + 1;
-            $cleanedValue = str_replace([' ', '-'], '', $value);
-            $part = substr($cleanedValue, 1, 5);
-            if ((int)$part !== $days ) return false;
-        }
-        return  true;
+        $ref = new DateTime("1867-01-01");
+        $days = $birthday->diff($ref)->days + 1;
+        $cleanedValue = str_replace([' ', '-'], '', $value);
+        $part = substr($cleanedValue, 1, 5);
+        return (int)$part === $days;
     }
 
     protected function check($value): bool

@@ -102,10 +102,11 @@ class TaxIdValidator extends HungarianValidator
 
     protected function checkDate($value, DateTimeInterface $birthday): bool
     {
-        $ref = new DateTime("1867-01-01");
-        $days = $birthday->diff($ref)->days + 1;
-        $cleanedValue = str_replace([' ', '-'], '', $value);
-        $part = substr($cleanedValue, 1, 5);
+	    $ref = new DateTime("1867-01-01 00:00:00", $birthday->getTimezone());
+	    $birthday->setTime(0,0);
+	    $days = $birthday->diff($ref)->days;
+	    $cleanedValue = str_replace([' ', '-'], '', $value);
+	    $part = substr($cleanedValue, 1, 5);
         return (int)$part === $days;
     }
 

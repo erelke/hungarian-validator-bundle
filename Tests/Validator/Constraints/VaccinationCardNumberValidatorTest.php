@@ -9,7 +9,7 @@
  *         eross.elemer@korona.info.hu
  */
 
-namespace Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
 
 use Erelke\HungarianValidatorBundle\Validator\VaccinationCardNumber;
 use Erelke\HungarianValidatorBundle\Validator\VaccinationCardNumberValidator;

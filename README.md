@@ -10,43 +10,40 @@ composer require erelke/hungarian-validator-bundle
 
 ## Használata / Példák
 
+### Személyi szám validálása
+
 ```php
 <?php
 namespace Acme\AcmeDemoBundle\Entity;
 
-use Erelke\HungarianValidatorBundle\Validator as HungarianAssert;
+use Validator as HungarianAssert;
 
 class AcmeEntity {
-  /**
-   * @HungarianAssert\PersonalId(message="Hibás személyi szám")
-   */
+   #[HungarianAssert\PersonalId(message="Hibás személyi szám")]
   protected $personal_id;
 
   // ...
 }
 ```
 
-Adóazonosító és a születési dátum kapcsolatának ellenőrzése:
+### Adóazonosító és a születési dátum kapcsolatának ellenőrzése:
 
 ```php
 <?php
 namespace Acme\AcmeDemoBundle\Entity;
 
-use Erelke\HungarianValidatorBundle\Validator as HungarianAssert;
+use Validator as HungarianAssert;
 
 class AcmeUser {
 
   protected \DateTimeInterface $birthDate 
   
-  /**
-   * @HungarianAssert\TaxId(
-   *    message="Hibás adózanosító!",
+  #[HungarianAssert\TaxId(message="Hibás adózanosító!",
    *    birthdayMessage="Adóazonosító nem a megadott születési dátumhoz ({{ birthDate }}) tartozik!",     
-   *    birthdayProperty="birthDate" 
-   * )
-   */
+   *    birthdayProperty="birthDate")]
   protected ?string $taxId;
 
+  protected \DateTime $birthDate;  
   // ...
 }
 ```

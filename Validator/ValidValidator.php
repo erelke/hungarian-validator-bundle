@@ -10,6 +10,7 @@
  */
 
 namespace Erelke\HungarianValidatorBundle\Validator;
+
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;

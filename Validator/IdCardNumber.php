@@ -2,11 +2,10 @@
 
 namespace Erelke\HungarianValidatorBundle\Validator;
 
+use Attribute;
 use Symfony\Component\Validator\Constraint;
 
-/**
- * @Annotation
- */
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 class IdCardNumber extends Constraint
 {
     const Message = "It is not a valid personal ID card number";

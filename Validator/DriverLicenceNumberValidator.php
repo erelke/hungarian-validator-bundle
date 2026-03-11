@@ -10,7 +10,6 @@
  */
 
 namespace Erelke\HungarianValidatorBundle\Validator;
-use Erelke\HungarianValidatorBundle\Validator\HungarianValidator;
 
 class DriverLicenceNumberValidator extends HungarianValidator
 {

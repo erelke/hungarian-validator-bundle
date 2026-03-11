@@ -10,14 +10,13 @@
  */
 
 namespace Erelke\HungarianValidatorBundle\Validator;
+use Attribute;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\LogicException;
 
-/**
- * @Annotation
- */
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 class Valid extends Constraint
 {
 	public string $message = "It is a not valid number!";

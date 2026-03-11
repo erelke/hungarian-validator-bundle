@@ -10,7 +10,8 @@
  *         eross.elemer@echobase.hu
  */
 
-namespace Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
+
 use Erelke\HungarianValidatorBundle\Validator\BusinessRegistrationNumber;
 use Erelke\HungarianValidatorBundle\Validator\DriverLicenceNumber;
 use Erelke\HungarianValidatorBundle\Validator\FullName;

@@ -9,7 +9,8 @@
  *         eross.elemer@korona.info.hu
  */
 
-namespace Tests\Validator\Constraints;
+namespace Erelke\HungarianValidatorBundle\Tests\Validator\Constraints;
+
 use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 use Erelke\HungarianValidatorBundle\Validator\DriverLicenceNumber;
 use Erelke\HungarianValidatorBundle\Validator\DriverLicenceNumberValidator;

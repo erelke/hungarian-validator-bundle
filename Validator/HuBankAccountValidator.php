@@ -23,7 +23,7 @@ class HuBankAccountValidator extends ConstraintValidator
      * @param Constraint|HuBankAccount $constraint
      * @return bool
      */
-    public function validate($value, Constraint $constraint)
+    public function validate($value, Constraint|HuBankAccount $constraint)
     {
         if (empty($value)) return true;
 

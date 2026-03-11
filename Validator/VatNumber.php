@@ -3,10 +3,9 @@
 namespace Erelke\HungarianValidatorBundle\Validator;
 
 use Symfony\Component\Validator\Constraint;
+use Attribute;
 
-/**
- * @Annotation
- */
+#[Attribute(Attribute::TARGET_PROPERTY | Attribute::TARGET_METHOD | Attribute::IS_REPEATABLE)]
 class VatNumber extends Constraint
 {
 	const Message = "It is not a valid VAT number";

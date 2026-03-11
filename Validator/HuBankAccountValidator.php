@@ -21,11 +21,10 @@ class HuBankAccountValidator extends ConstraintValidator
     /**
      * @param mixed $value
      * @param Constraint|HuBankAccount $constraint
-     * @return bool
      */
-    public function validate($value, Constraint|HuBankAccount $constraint)
+    public function validate($value, Constraint|HuBankAccount $constraint): void
     {
-        if (empty($value)) return true;
+        if (empty($value)) return;
 
         $pattern = '/^[0-9]{8}[-][0-9]{8}([-][0-9]{8})?$/';
         $sCheckTags = '9731';
